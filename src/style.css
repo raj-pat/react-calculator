@@ -1,0 +1,49 @@
+.calcBtn {
+  border-radius: 50%;
+  font-size: 25px;
+  text-align: center;
+  margin: 6px 1px;
+  width: 65px;
+  height: 65px;
+  padding: 0;
+}
+
+.screen {
+  border: 0ch;
+  color: aliceblue;
+  text-align: end;
+  font-size: 3em;
+  margin: 5px;
+  border-radius: 5px;
+  height: 100px;
+}
+
+.emptyScreen {
+  height: 30px;
+}
+.calcOuter {
+  width: 450px;
+}
+
+.btnContainer {
+  height: 450px;
+}
+.btnRow {
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .screen {
+    font-size: 2.5em;
+    height: 70px;
+  }
+  .calcOuter {
+    width: 350px;
+  }
+  .emptyScreen {
+    height: 15px;
+  }
+  .btnContainer {
+    height: 390px;
+  }
+}
