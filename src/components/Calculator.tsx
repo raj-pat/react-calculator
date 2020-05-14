@@ -1,13 +1,17 @@
 import React from "react";
-import CalcButton from "./CalcButton";
 import Screen from "./Screen";
 import Buttons from "./Buttons";
+import { onButtonClickInterface } from "../Interfaces/functions";
+
+let onButtonClick: onButtonClickInterface = (innerSymbol, type) => {
+  console.log(innerSymbol);
+};
 
 const Calculator: React.SFC<{}> = () => {
   return (
     <div className="container bg-dark calcOuter">
-      <Screen />
-      <Buttons />
+      <Screen screenOutput={0} />
+      <Buttons onButtonClick={onButtonClick} />
     </div>
   );
 };

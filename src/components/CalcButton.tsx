@@ -1,16 +1,17 @@
 import React from "react";
+import { onButtonClickInterface } from "../Interfaces/functions";
 
 export interface CalcButtonProps {
   innerSymbol: string;
   type: string;
+  onButtonClick: onButtonClickInterface
 }
 
+
 const CalcButton: React.SFC<CalcButtonProps> = (props) => {
-  //btn inside
-  //isSymbol or isDigit
   return (
     <div className={getClasses()}>
-      <button className="btn btn-secondary calcBtn" style={getStyleObject()}>
+      <button className="btn btn-secondary calcBtn" style={getStyleObject()} onClick={()=> props.onButtonClick(props.innerSymbol,props.type)}>
         {props.innerSymbol}
       </button>
     </div>

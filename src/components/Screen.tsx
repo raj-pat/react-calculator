@@ -1,6 +1,10 @@
 import React from "react";
 
-export interface ScreenProps {}
+export interface ScreenProps {
+
+  screenOutput: number
+
+}
 
 export interface ScreenState {}
 
@@ -11,7 +15,7 @@ class Screen extends React.Component<ScreenProps, ScreenState> {
       <div className="row ">
         <div className="col screen">
           <div className="emptyScreen"></div>
-          <div>999,999,999</div>
+          <div>{this.props.screenOutput}</div>
         </div>
       </div>
     );

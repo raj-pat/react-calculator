@@ -12,14 +12,15 @@
   border: 0ch;
   color: aliceblue;
   text-align: end;
-  font-size: 3em;
+  font-size: 3.5em;
   margin: 5px;
   border-radius: 5px;
   height: 80px;
+  padding-right: 25px;
 }
 
 .emptyScreen {
-  height: 20px;
+  height: 10px;
 }
 .calcOuter {
   width: 450px;
