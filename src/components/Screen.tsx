@@ -2,7 +2,7 @@ import React from "react";
 
 export interface ScreenProps {
 
-  screenOutput: number
+  screenOutput: string
 
 }
 
