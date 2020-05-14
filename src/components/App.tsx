@@ -7,7 +7,7 @@ export interface AppProps {}
 const App: React.SFC<AppProps> = () => {
   return (
     <div className="row justify-content-center">
-      <div className="col self-align-center m-5 ">
+      <div className="col" style={{padding: '0'}}>
         
         <Calculator />
       </div>

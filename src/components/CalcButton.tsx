@@ -9,27 +9,23 @@ const CalcButton: React.SFC<CalcButtonProps> = (props) => {
   //btn inside
   //isSymbol or isDigit
   return (
-    <button className={getClasses()} style={getStyleObject()}>
-      {props.innerSymbol}
-    </button>
+    <div className={getClasses()}>
+      <button className="btn calcBtn" style={getStyleObject()}>
+        {props.innerSymbol}
+      </button>
+    </div>
   );
+
   function getClasses() {
     if (
       props.innerSymbol === "0" ||
       props.innerSymbol === "." ||
       props.innerSymbol === "="
-    ) {
-      let col: string;
-      if (props.innerSymbol === "0") {
-        col = "-6";
-      } else {
-        col = "-3";
-      }
-      return "calcBtn btn m-1 col" + col;
-    } else {
-      return "calcBtn btn m-1 col";
-    }
+    )
+      return "btnRow col" + (props.innerSymbol === "0" ? "-6" : "-3");
+    else return "btnRow col-3";
   }
+
   function getStyleObject() {
     let color: string;
     if (props.type === "function") {
@@ -42,6 +38,14 @@ const CalcButton: React.SFC<CalcButtonProps> = (props) => {
         color: "white",
       };
     } else {
+      if (props.innerSymbol === "0") {
+        return {
+          backgroundColor: "grey",
+          color: "white",
+          width: "110%",
+          borderRadius: "50px",
+        };
+      }
       return {
         backgroundColor: "grey",
         color: "white",
