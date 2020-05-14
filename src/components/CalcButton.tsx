@@ -10,7 +10,7 @@ const CalcButton: React.SFC<CalcButtonProps> = (props) => {
   //isSymbol or isDigit
   return (
     <div className={getClasses()}>
-      <button className="btn calcBtn" style={getStyleObject()}>
+      <button className="btn btn-secondary calcBtn" style={getStyleObject()}>
         {props.innerSymbol}
       </button>
     </div>

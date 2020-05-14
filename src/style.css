@@ -1,10 +1,10 @@
 .calcBtn {
   border-radius: 50%;
-  font-size: 25px;
+  font-size: 30px;
   text-align: center;
   margin: 6px 1px;
-  width: 65px;
-  height: 65px;
+  width: 90px;
+  height: 90px;
   padding: 0;
 }
 
@@ -15,18 +15,18 @@
   font-size: 3em;
   margin: 5px;
   border-radius: 5px;
-  height: 100px;
+  height: 80px;
 }
 
 .emptyScreen {
-  height: 30px;
+  height: 20px;
 }
 .calcOuter {
   width: 450px;
 }
 
 .btnContainer {
-  height: 450px;
+  height: 520px;
 }
 .btnRow {
   text-align: center;
@@ -45,5 +45,13 @@
   }
   .btnContainer {
     height: 390px;
+  }
+  .calcBtn {
+    border-radius: 50%;
+    font-size: 25px;
+    margin: 6px 1px;
+    width: 65px;
+    height: 65px;
+    
   }
 }
