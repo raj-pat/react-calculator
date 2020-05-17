@@ -1,22 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { onButtonClickInterface } from "../Interfaces/functions";
 
 export interface CalcButtonProps {
   innerSymbol: string;
   type: string;
-  onButtonClick: onButtonClickInterface
+  onButtonClick: onButtonClickInterface;
 }
 
-
 const CalcButton: React.SFC<CalcButtonProps> = (props) => {
+  
   return (
     <div className={getClasses()}>
-      <button className="btn btn-secondary calcBtn" style={getStyleObject()} onClick={()=> props.onButtonClick(props.innerSymbol,props.type)}>
+      <button
+        className="btn btn-secondary calcBtn"
+        style={getStyleObject()}
+        onClick={onClickHandler}
+      >
         {props.innerSymbol}
       </button>
     </div>
   );
 
+  function onClickHandler() {
+    props.onButtonClick(props.innerSymbol, props.type);
+  }
   function getClasses() {
     if (
       props.innerSymbol === "0" ||

@@ -7,6 +7,9 @@
   height: 90px;
   padding: 0;
 }
+.btn-secondary:active {
+  animation: btn-animation 2s ease-out 0s reverse;
+}
 
 .screen {
   border: 0ch;
@@ -31,6 +34,12 @@
 }
 .btnRow {
   text-align: center;
+}
+
+@keyframes btn-animation {
+  to {
+    background-color: white;
+  }
 }
 
 @media screen and (max-width: 600px) {
