@@ -1,4 +1,3 @@
-
-export interface onButtonClickInterface{
-    (innerSymbol: string, type: string): void
-  }
+export interface onButtonClickInterface {
+  (innerSymbol: string, type: string): void;
+}

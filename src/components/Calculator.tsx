@@ -30,27 +30,56 @@ class Calculator extends React.Component<{}, CalculatorStateInterface> {
   onButtonClick(innerSymbol: string, type: string): void {
     this.setState((state, props) => {
       let newState = { ...state };
-
-      if (newState.output.length === Calculator.operandLimit) {
-        return;
-      }
+      let { output, isFloat, previous, currMath, resetScreenNext } = newState;
 
       switch (type) {
         case "digit":
+          if (newState.output.length === Calculator.operandLimit) {
+            if (!resetScreenNext) return;
+          }
           if (innerSymbol === ".") {
             if (newState.isFloat) break;
             else newState.isFloat = true;
           }
 
-          if (newState.output === "0" || newState.resetScreenNext) {
+          if (
+            newState.output === "0" ||
+            newState.output === "-0" ||
+            newState.resetScreenNext
+          ) {
             if (newState.resetScreenNext) {
               newState.resetScreenNext = false;
             }
-            newState.output = innerSymbol;
+
+            newState.output =
+              newState.output === "-0" ? "-" + innerSymbol : innerSymbol;
           } else {
             newState.output = newState.output.toString() + innerSymbol;
           }
 
+          break;
+        case "function":
+          switch (innerSymbol) {
+            case "AC":
+              newState = {
+                output: "0",
+                isFloat: false,
+                previous: "",
+                currMath: "",
+                resetScreenNext: false,
+              };
+              break;
+
+            case "+/-":
+              if (newState.output[0] === "-") {
+                newState.output = newState.output.slice(1);
+              } else {
+                newState.output = "-" + newState.output;
+              }
+              break;
+            case "%":
+              this.onButtonClick("%", "math");
+          }
           break;
         case "math":
           const newOutput = compute(
@@ -69,6 +98,7 @@ class Calculator extends React.Component<{}, CalculatorStateInterface> {
             newState.currMath,
             newState.output
           );
+
           break;
       }
       return newState;
@@ -83,46 +113,38 @@ class Calculator extends React.Component<{}, CalculatorStateInterface> {
       </div>
     );
   }
-
-  // let onButtonClick: onButtonClickInterface = (innerSymbol, type) => {
-
-  //
-
-  //   switch (type) {
-  //     case "digit":
-
-  //       if (innerSymbol === ".") {
-  //         if (isFloat) break;
-  //         else isFloat = true;
-  //       }
-
-  //       if (newOutput === "0" || resetScreenNext) {
-  //         if (resetScreenNext) {
-  //           resetScreenNext = false;
-  //         }
-  //         setOutput(innerSymbol);
-  //       } else {
-  //         setOutput(output.toString() + innerSymbol);
-  //       }
-  //       break;
-  //     case "compute":
-  //       break;
-  //     case "math":
-  //       console.log(previous);
-  //
-  //       break;
-  //   }
-  // };
 }
 
 const compute = (operand1: string, math: string, operand2: string): string => {
+  let result;
   switch (math) {
     case "":
       return operand2;
     case "+":
-      const result = parseFloat(operand1) + parseFloat(operand2);
+      result = parseFloat(operand1) + parseFloat(operand2);
+      return result.toString();
+    case "-":
+      result = parseFloat(operand1) - parseFloat(operand2);
+      return result.toString();
+    case "=":
+      return operand2;
+    case "%":
+      result = parseFloat(operand2) / 100;
+      return result.toString().slice(-9);
+    case "÷":
+      result = parseFloat(operand1) / parseFloat(operand2);
+      return result.toString().slice(0, 10);
+    case "x":
+      result = parseFloat(operand1) * parseFloat(operand2);
+      let resultLength = result.toString().length;
+      if (resultLength > 6) {
+        result = result / 10 ** (resultLength - 1);
+        result =
+          result.toString().slice(0, 5) + "e" + (resultLength - 1).toString();
+      }
       return result.toString();
   }
+
   return "";
 };
 
