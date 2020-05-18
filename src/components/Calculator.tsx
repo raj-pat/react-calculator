@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Screen from "./Screen";
 import Buttons from "./Buttons";
 import { onButtonClickInterface } from "../Interfaces/functions";
+import Route from "./RouteButtons";
 
 interface CalculatorStateInterface {
   output: string;
@@ -107,10 +108,10 @@ class Calculator extends React.Component<{}, CalculatorStateInterface> {
 
   render() {
     return (
-      <div className="container bg-dark calcOuter">
+      <React.Fragment>
         <Screen screenOutput={this.state.output} />
         <Buttons onButtonClick={this.onButtonClick} />
-      </div>
+      </React.Fragment>
     );
   }
 }

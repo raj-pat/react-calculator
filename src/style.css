@@ -7,6 +7,9 @@
   height: 90px;
   padding: 0;
 }
+.route-btn {
+  width: 180 px;
+}
 .btn-secondary:active {
   animation: btn-animation 2s ease-out 0s reverse;
 }
@@ -43,6 +46,9 @@
 }
 
 @media screen and (max-width: 600px) {
+  .route-btn {
+    width: 135px;
+  }
   .screen {
     font-size: 2.5em;
     height: 70px;
