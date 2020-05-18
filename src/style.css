@@ -10,6 +10,7 @@
 .route-btn {
   width: 180 px;
 }
+
 .btn-secondary:active {
   animation: btn-animation 2s ease-out 0s reverse;
 }
@@ -24,7 +25,12 @@
   height: 80px;
   padding-right: 25px;
 }
-
+.hist-container {
+  overflow: auto;
+  height: 586px;
+  margin: 12px;
+  background-color: aliceblue;
+}
 .emptyScreen {
   height: 10px;
 }
@@ -46,6 +52,10 @@
 }
 
 @media screen and (max-width: 600px) {
+  .hist-container {
+    overflow: auto;
+    height: 446px;
+  }
   .route-btn {
     width: 135px;
   }
