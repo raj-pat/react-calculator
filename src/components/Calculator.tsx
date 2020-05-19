@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import Screen from "./Screen";
 import Buttons from "./Buttons";
-import { onButtonClickInterface } from "../Interfaces/functions";
+import {
+  onButtonClickInterface,
+  postDataToHistInterface,
+} from "../Interfaces/functions";
 import Route from "./RouteButtons";
 
 interface CalculatorStateInterface {
@@ -12,7 +15,14 @@ interface CalculatorStateInterface {
   resetScreenNext: boolean;
 }
 
-class Calculator extends React.Component<{}, CalculatorStateInterface> {
+interface CalculatorProps {
+  postDataToHist: postDataToHistInterface;
+}
+
+class Calculator extends React.Component<
+  CalculatorProps,
+  CalculatorStateInterface
+> {
   static operandLimit: number = 10;
 
   constructor(props: any) {
@@ -36,7 +46,7 @@ class Calculator extends React.Component<{}, CalculatorStateInterface> {
       switch (type) {
         case "digit":
           if (newState.output.length === Calculator.operandLimit) {
-            if (!resetScreenNext) return;
+            if (!newState.resetScreenNext) return;
           }
           if (innerSymbol === ".") {
             if (newState.isFloat) break;
@@ -88,17 +98,40 @@ class Calculator extends React.Component<{}, CalculatorStateInterface> {
             newState.currMath,
             newState.output
           );
+          if (!(currMath == "=" || newState.output == newOutput)) {
+            props.postDataToHist(
+              newState.previous +
+                " " +
+                newState.currMath +
+                " " +
+                newState.output +
+                " = " +
+                newOutput
+            );
+          }
           newState.previous = newOutput;
           newState.resetScreenNext = true;
           newState.currMath = innerSymbol;
           newState.output = newOutput;
           break;
         case "compute":
-          newState.output = compute(
+          const result = compute(
             newState.previous,
             newState.currMath,
             newState.output
           );
+          if (!(currMath == "=" || newState.output == result)) {
+            props.postDataToHist(
+              newState.previous +
+                " " +
+                newState.currMath +
+                " " +
+                newState.output +
+                " = " + 
+                result
+            );
+          }
+          newState.output = result;
 
           break;
       }
